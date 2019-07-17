@@ -1,0 +1,613 @@
+
+usonic.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000002a  00800100  000002f4  00000388  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000002f4  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          0000000a  0080012a  0080012a  000003b2  2**0
+                  ALLOC
+  3 .debug_aranges 00000020  00000000  00000000  000003b2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 00000101  00000000  00000000  000003d2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   0000044d  00000000  00000000  000004d3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000001de  00000000  00000000  00000920  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000003ec  00000000  00000000  00000afe  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000000e0  00000000  00000000  00000eec  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000001a3  00000000  00000000  00000fcc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000000d6  00000000  00000000  0000116f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000c0  00000000  00000000  00001245  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 b1 00 	jmp	0x162	; 0x162 <__vector_1>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e4 ef       	ldi	r30, 0xF4	; 244
+  7c:	f2 e0       	ldi	r31, 0x02	; 2
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <.do_copy_data_start>
+
+00000080 <.do_copy_data_loop>:
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+
+00000084 <.do_copy_data_start>:
+  84:	aa 32       	cpi	r26, 0x2A	; 42
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <.do_copy_data_loop>
+
+0000008a <__do_clear_bss>:
+  8a:	11 e0       	ldi	r17, 0x01	; 1
+  8c:	aa e2       	ldi	r26, 0x2A	; 42
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	a4 33       	cpi	r26, 0x34	; 52
+  96:	b1 07       	cpc	r27, r17
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 c1 00 	call	0x182	; 0x182 <main>
+  9e:	0c 94 78 01 	jmp	0x2f0	; 0x2f0 <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <serialOutChar>:
+#define BAUD_RATE 9600
+#endif
+
+
+
+void serialOutChar(unsigned char Message){
+  a6:	98 2f       	mov	r25, r24
+	while(!( UCSR0A & (1<<UDRE0)));
+  a8:	80 91 c0 00 	lds	r24, 0x00C0
+  ac:	85 ff       	sbrs	r24, 5
+  ae:	fc cf       	rjmp	.-8      	; 0xa8 <serialOutChar+0x2>
+	UDR0 = Message;
+  b0:	90 93 c6 00 	sts	0x00C6, r25
+}
+  b4:	08 95       	ret
+
+000000b6 <serialOutString>:
+
+void serialOutString(char* Message){
+  b6:	fc 01       	movw	r30, r24
+  b8:	07 c0       	rjmp	.+14     	; 0xc8 <serialOutString+0x12>
+#endif
+
+
+
+void serialOutChar(unsigned char Message){
+	while(!( UCSR0A & (1<<UDRE0)));
+  ba:	80 91 c0 00 	lds	r24, 0x00C0
+  be:	85 ff       	sbrs	r24, 5
+  c0:	fc cf       	rjmp	.-8      	; 0xba <serialOutString+0x4>
+	UDR0 = Message;
+  c2:	90 93 c6 00 	sts	0x00C6, r25
+}
+
+void serialOutString(char* Message){
+	while(*Message != 0x00){
+		serialOutChar(*Message);
+		Message++;
+  c6:	31 96       	adiw	r30, 0x01	; 1
+	while(!( UCSR0A & (1<<UDRE0)));
+	UDR0 = Message;
+}
+
+void serialOutString(char* Message){
+	while(*Message != 0x00){
+  c8:	90 81       	ld	r25, Z
+  ca:	99 23       	and	r25, r25
+  cc:	b1 f7       	brne	.-20     	; 0xba <serialOutString+0x4>
+		serialOutChar(*Message);
+		Message++;
+	}
+}
+  ce:	08 95       	ret
+
+000000d0 <serialOutLine>:
+
+void serialOutLine(char* Message){
+	serialOutString(Message);
+  d0:	0e 94 5b 00 	call	0xb6	; 0xb6 <serialOutString>
+	serialOutString("\r\n");
+  d4:	80 e0       	ldi	r24, 0x00	; 0
+  d6:	91 e0       	ldi	r25, 0x01	; 1
+  d8:	0e 94 5b 00 	call	0xb6	; 0xb6 <serialOutString>
+}
+  dc:	08 95       	ret
+
+000000de <serialInChar>:
+
+unsigned char serialInChar(void){
+	while(!(UCSR0A & (1<<RXC0)));
+  de:	80 91 c0 00 	lds	r24, 0x00C0
+  e2:	87 ff       	sbrs	r24, 7
+  e4:	fc cf       	rjmp	.-8      	; 0xde <serialInChar>
+	return UDR0;
+  e6:	80 91 c6 00 	lds	r24, 0x00C6
+}
+  ea:	08 95       	ret
+
+000000ec <serialInit8N1>:
+
+void serialInit8N1(void){
+	UBRR0 = BAUD;
+  ec:	87 e6       	ldi	r24, 0x67	; 103
+  ee:	90 e0       	ldi	r25, 0x00	; 0
+  f0:	90 93 c5 00 	sts	0x00C5, r25
+  f4:	80 93 c4 00 	sts	0x00C4, r24
+	UCSR0B = (1<<RXEN0)|(1<<TXEN0);
+  f8:	88 e1       	ldi	r24, 0x18	; 24
+  fa:	80 93 c1 00 	sts	0x00C1, r24
+	UCSR0C = (3<<UCSZ00);
+  fe:	86 e0       	ldi	r24, 0x06	; 6
+ 100:	80 93 c2 00 	sts	0x00C2, r24
+	DDRD = (1<<PIND1);
+ 104:	82 e0       	ldi	r24, 0x02	; 2
+ 106:	8a b9       	out	0x0a, r24	; 10
+ 108:	08 95       	ret
+
+0000010a <onExtINT0>:
+//#define 	LEDPin		 4	//Reaction measure			NC
+//**********************************//
+
+void onExtINT0(void){
+//Enable External Inttrupt INT0 for Echo
+	EICRA |= (1 << ISC01);    // set INT0 to trigger on Rising Edge 
+ 10a:	e9 e6       	ldi	r30, 0x69	; 105
+ 10c:	f0 e0       	ldi	r31, 0x00	; 0
+ 10e:	80 81       	ld	r24, Z
+ 110:	82 60       	ori	r24, 0x02	; 2
+ 112:	80 83       	st	Z, r24
+	EIMSK |= (1 << INT0);     // Turns on INT0
+ 114:	e8 9a       	sbi	0x1d, 0	; 29
+	SREG |= (1<<INT0);
+ 116:	8f b7       	in	r24, 0x3f	; 63
+ 118:	81 60       	ori	r24, 0x01	; 1
+ 11a:	8f bf       	out	0x3f, r24	; 63
+	
+	sei();                    // turn on interrupts		
+ 11c:	78 94       	sei
+}
+ 11e:	08 95       	ret
+
+00000120 <initSonic>:
+
+void initSonic(void){
+//Enable DDR for Echo,Trigeer and test LED
+	DDRD = (1<<TrigPin);// | (1<<LEDPin);		// Set Pins As Output
+ 120:	88 e0       	ldi	r24, 0x08	; 8
+ 122:	8a b9       	out	0x0a, r24	; 10
+	DDRD &= ~(1<<EchoPin);					//Echo pin as Input	
+ 124:	52 98       	cbi	0x0a, 2	; 10
+}
+ 126:	08 95       	ret
+
+00000128 <offExtINT0>:
+
+void offExtINT0(void){
+//Disable External Inttrupt INT0 for Echo
+	EIMSK &= ~_BV(INT0);				// Disable interrupt on INT0
+ 128:	e8 98       	cbi	0x1d, 0	; 29
+}
+ 12a:	08 95       	ret
+
+0000012c <pulseTrigger>:
+
+void pulseTrigger(void){
+//Trigger a pulse For module
+	PORTD &= ~(1<<TrigPin);		// Set Trigger Pin To 0
+ 12c:	5b 98       	cbi	0x0b, 3	; 11
+    can be achieved.
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 12e:	85 e3       	ldi	r24, 0x35	; 53
+ 130:	98 2f       	mov	r25, r24
+ 132:	9a 95       	dec	r25
+ 134:	f1 f7       	brne	.-4      	; 0x132 <pulseTrigger+0x6>
+	_delay_us(10);				// Wait
+	PORTD |= (1<<TrigPin);		// Set Trigger pin To 1
+ 136:	5b 9a       	sbi	0x0b, 3	; 11
+ 138:	8a 95       	dec	r24
+ 13a:	f1 f7       	brne	.-4      	; 0x138 <pulseTrigger+0xc>
+	_delay_us(10);				// Wait
+	PORTD &= ~(1<<TrigPin);		// Set Trigger Pin To 					
+ 13c:	5b 98       	cbi	0x0b, 3	; 11
+}
+ 13e:	08 95       	ret
+
+00000140 <startTimer1>:
+
+void startTimer1(void){
+//Start Timer Counter 1
+	TCNT1=0;							//Set Initial Timer value
+ 140:	10 92 85 00 	sts	0x0085, r1
+ 144:	10 92 84 00 	sts	0x0084, r1
+	TCCR1B|=(1<<CS10);					//Start timer without prescaller
+ 148:	e1 e8       	ldi	r30, 0x81	; 129
+ 14a:	f0 e0       	ldi	r31, 0x00	; 0
+ 14c:	80 81       	ld	r24, Z
+ 14e:	81 60       	ori	r24, 0x01	; 1
+ 150:	80 83       	st	Z, r24
+	sei();								//Enable global interrutps	
+ 152:	78 94       	sei
+}
+ 154:	08 95       	ret
+
+00000156 <endTimer1>:
+
+void endTimer1(void){
+//Disable Timer Counter 1
+	TCCR1B&=~(1<<CS10);					//Disable timer 
+ 156:	e1 e8       	ldi	r30, 0x81	; 129
+ 158:	f0 e0       	ldi	r31, 0x00	; 0
+ 15a:	80 81       	ld	r24, Z
+ 15c:	8e 7f       	andi	r24, 0xFE	; 254
+ 15e:	80 83       	st	Z, r24
+ 160:	08 95       	ret
+
+00000162 <__vector_1>:
+					
+		}
+	}
+}
+
+ISR(INT0_vect) {
+ 162:	1f 92       	push	r1
+ 164:	0f 92       	push	r0
+ 166:	0f b6       	in	r0, 0x3f	; 63
+ 168:	0f 92       	push	r0
+ 16a:	11 24       	eor	r1, r1
+ 16c:	8f 93       	push	r24
+	pingState=2;						//change Pinstate for Start Timer	
+ 16e:	82 e0       	ldi	r24, 0x02	; 2
+ 170:	80 93 2a 01 	sts	0x012A, r24
+	DDRD &= ~(1<<EchoPin);					//Echo pin as Input	
+}
+
+void offExtINT0(void){
+//Disable External Inttrupt INT0 for Echo
+	EIMSK &= ~_BV(INT0);				// Disable interrupt on INT0
+ 174:	e8 98       	cbi	0x1d, 0	; 29
+	offExtINT0();						// Disable interrupt on INT0
+}
+ 176:	8f 91       	pop	r24
+ 178:	0f 90       	pop	r0
+ 17a:	0f be       	out	0x3f, r0	; 63
+ 17c:	0f 90       	pop	r0
+ 17e:	1f 90       	pop	r1
+ 180:	18 95       	reti
+
+00000182 <main>:
+
+volatile uint8_t pingState 	= 0;
+volatile uint8_t echoCm 	= 0;
+volatile char snum[8];
+
+int main(void){
+ 182:	ef 92       	push	r14
+ 184:	ff 92       	push	r15
+ 186:	0f 93       	push	r16
+ 188:	1f 93       	push	r17
+ 18a:	cf 93       	push	r28
+ 18c:	df 93       	push	r29
+	while(!(UCSR0A & (1<<RXC0)));
+	return UDR0;
+}
+
+void serialInit8N1(void){
+	UBRR0 = BAUD;
+ 18e:	87 e6       	ldi	r24, 0x67	; 103
+ 190:	90 e0       	ldi	r25, 0x00	; 0
+ 192:	90 93 c5 00 	sts	0x00C5, r25
+ 196:	80 93 c4 00 	sts	0x00C4, r24
+	UCSR0B = (1<<RXEN0)|(1<<TXEN0);
+ 19a:	88 e1       	ldi	r24, 0x18	; 24
+ 19c:	80 93 c1 00 	sts	0x00C1, r24
+	UCSR0C = (3<<UCSZ00);
+ 1a0:	86 e0       	ldi	r24, 0x06	; 6
+ 1a2:	80 93 c2 00 	sts	0x00C2, r24
+	DDRD = (1<<PIND1);
+ 1a6:	82 e0       	ldi	r24, 0x02	; 2
+ 1a8:	8a b9       	out	0x0a, r24	; 10
+	sei();                    // turn on interrupts		
+}
+
+void initSonic(void){
+//Enable DDR for Echo,Trigeer and test LED
+	DDRD = (1<<TrigPin);// | (1<<LEDPin);		// Set Pins As Output
+ 1aa:	88 e0       	ldi	r24, 0x08	; 8
+ 1ac:	8a b9       	out	0x0a, r24	; 10
+	DDRD &= ~(1<<EchoPin);					//Echo pin as Input	
+ 1ae:	52 98       	cbi	0x0a, 2	; 10
+		switch (pingState){
+			//Send Triger pulse 10 us long
+			case 0:
+					onExtINT0();					//Enable External Inttrupt INT0	
+					pulseTrigger();					//Trigger a pulse For module
+					pingState=1;	
+ 1b0:	ee 24       	eor	r14, r14
+ 1b2:	e3 94       	inc	r14
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 1b4:	08 ec       	ldi	r16, 0xC8	; 200
+ 1b6:	10 e0       	ldi	r17, 0x00	; 0
+					
+					serialOutString("The Distance is : ");
+					serialOutLine(snum);	
+					serialOutLine("-------------------");	
+					
+					pingState = 3;					// Go To State resettting mode
+ 1b8:	c0 e9       	ldi	r28, 0x90	; 144
+ 1ba:	d1 e0       	ldi	r29, 0x01	; 1
+ 1bc:	83 e0       	ldi	r24, 0x03	; 3
+ 1be:	f8 2e       	mov	r15, r24
+	serialInit8N1();			//Initialize serial
+	initSonic();				//Initialize Sonic pins DDR
+		
+	while(1){
+		
+		switch (pingState){
+ 1c0:	80 91 2a 01 	lds	r24, 0x012A
+ 1c4:	81 30       	cpi	r24, 0x01	; 1
+ 1c6:	69 f0       	breq	.+26     	; 0x1e2 <main+0x60>
+ 1c8:	81 30       	cpi	r24, 0x01	; 1
+ 1ca:	28 f0       	brcs	.+10     	; 0x1d6 <main+0x54>
+ 1cc:	82 30       	cpi	r24, 0x02	; 2
+ 1ce:	59 f0       	breq	.+22     	; 0x1e6 <main+0x64>
+ 1d0:	83 30       	cpi	r24, 0x03	; 3
+ 1d2:	b1 f7       	brne	.-20     	; 0x1c0 <main+0x3e>
+ 1d4:	3b c0       	rjmp	.+118    	; 0x24c <main+0xca>
+			//Send Triger pulse 10 us long
+			case 0:
+					onExtINT0();					//Enable External Inttrupt INT0	
+ 1d6:	0e 94 85 00 	call	0x10a	; 0x10a <onExtINT0>
+					pulseTrigger();					//Trigger a pulse For module
+ 1da:	0e 94 96 00 	call	0x12c	; 0x12c <pulseTrigger>
+					pingState=1;	
+ 1de:	e0 92 2a 01 	sts	0x012A, r14
+				
+			case 1:	
+					while(!(PIND & (1<<EchoPin)));	//loop until Echo Begin
+ 1e2:	4a 9b       	sbis	0x09, 2	; 9
+ 1e4:	fe cf       	rjmp	.-4      	; 0x1e2 <main+0x60>
+	PORTD &= ~(1<<TrigPin);		// Set Trigger Pin To 					
+}
+
+void startTimer1(void){
+//Start Timer Counter 1
+	TCNT1=0;							//Set Initial Timer value
+ 1e6:	10 92 85 00 	sts	0x0085, r1
+ 1ea:	10 92 84 00 	sts	0x0084, r1
+	TCCR1B|=(1<<CS10);					//Start timer without prescaller
+ 1ee:	80 91 81 00 	lds	r24, 0x0081
+ 1f2:	81 60       	ori	r24, 0x01	; 1
+ 1f4:	80 93 81 00 	sts	0x0081, r24
+	sei();								//Enable global interrutps	
+ 1f8:	78 94       	sei
+				
+			case 2:											
+					startTimer1();						//Intrrupt timer Start
+						while((PIND & (1<<EchoPin)));	//loop until  Echo Over
+ 1fa:	4a 99       	sbic	0x09, 2	; 9
+ 1fc:	fe cf       	rjmp	.-4      	; 0x1fa <main+0x78>
+}
+
+void endTimer1(void){
+//Disable Timer Counter 1
+	TCCR1B&=~(1<<CS10);					//Disable timer 
+ 1fe:	80 91 81 00 	lds	r24, 0x0081
+ 202:	8e 7f       	andi	r24, 0xFE	; 254
+ 204:	80 93 81 00 	sts	0x0081, r24
+					endTimer1();						//Intrrupt timer Stop
+	
+					echoCm = (TCNT1)/(16*58);			// Count echocms
+ 208:	80 91 84 00 	lds	r24, 0x0084
+ 20c:	90 91 85 00 	lds	r25, 0x0085
+ 210:	60 ea       	ldi	r22, 0xA0	; 160
+ 212:	73 e0       	ldi	r23, 0x03	; 3
+ 214:	0e 94 33 01 	call	0x266	; 0x266 <__udivmodhi4>
+ 218:	60 93 2b 01 	sts	0x012B, r22
+				//	_delay_ms(250);
+				//	PORTD &= ~(1<<LEDPin);
+				//	_delay_ms(250);
+					
+				// convert 123 to string [buf]
+					itoa(echoCm, snum, 10);
+ 21c:	80 91 2b 01 	lds	r24, 0x012B
+ 220:	90 e0       	ldi	r25, 0x00	; 0
+ 222:	6c e2       	ldi	r22, 0x2C	; 44
+ 224:	71 e0       	ldi	r23, 0x01	; 1
+ 226:	4a e0       	ldi	r20, 0x0A	; 10
+ 228:	50 e0       	ldi	r21, 0x00	; 0
+ 22a:	0e 94 47 01 	call	0x28e	; 0x28e <itoa>
+					
+					serialOutString("The Distance is : ");
+ 22e:	83 e0       	ldi	r24, 0x03	; 3
+ 230:	91 e0       	ldi	r25, 0x01	; 1
+ 232:	0e 94 5b 00 	call	0xb6	; 0xb6 <serialOutString>
+					serialOutLine(snum);	
+ 236:	8c e2       	ldi	r24, 0x2C	; 44
+ 238:	91 e0       	ldi	r25, 0x01	; 1
+ 23a:	0e 94 68 00 	call	0xd0	; 0xd0 <serialOutLine>
+					serialOutLine("-------------------");	
+ 23e:	86 e1       	ldi	r24, 0x16	; 22
+ 240:	91 e0       	ldi	r25, 0x01	; 1
+ 242:	0e 94 68 00 	call	0xd0	; 0xd0 <serialOutLine>
+					
+					pingState = 3;					// Go To State resettting mode
+ 246:	f0 92 2a 01 	sts	0x012A, r15
+ 24a:	ba cf       	rjmp	.-140    	; 0x1c0 <main+0x3e>
+ 24c:	c8 01       	movw	r24, r16
+ 24e:	01 97       	sbiw	r24, 0x01	; 1
+ 250:	f1 f7       	brne	.-4      	; 0x24e <main+0xcc>
+					
+				break;
+	
+			case 3:
+					_delay_us(50);
+					pingState=0;
+ 252:	10 92 2a 01 	sts	0x012A, r1
+ 256:	88 ee       	ldi	r24, 0xE8	; 232
+ 258:	93 e0       	ldi	r25, 0x03	; 3
+ 25a:	fe 01       	movw	r30, r28
+ 25c:	31 97       	sbiw	r30, 0x01	; 1
+ 25e:	f1 f7       	brne	.-4      	; 0x25c <main+0xda>
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 260:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 262:	d9 f7       	brne	.-10     	; 0x25a <main+0xd8>
+ 264:	ad cf       	rjmp	.-166    	; 0x1c0 <main+0x3e>
+
+00000266 <__udivmodhi4>:
+ 266:	aa 1b       	sub	r26, r26
+ 268:	bb 1b       	sub	r27, r27
+ 26a:	51 e1       	ldi	r21, 0x11	; 17
+ 26c:	07 c0       	rjmp	.+14     	; 0x27c <__udivmodhi4_ep>
+
+0000026e <__udivmodhi4_loop>:
+ 26e:	aa 1f       	adc	r26, r26
+ 270:	bb 1f       	adc	r27, r27
+ 272:	a6 17       	cp	r26, r22
+ 274:	b7 07       	cpc	r27, r23
+ 276:	10 f0       	brcs	.+4      	; 0x27c <__udivmodhi4_ep>
+ 278:	a6 1b       	sub	r26, r22
+ 27a:	b7 0b       	sbc	r27, r23
+
+0000027c <__udivmodhi4_ep>:
+ 27c:	88 1f       	adc	r24, r24
+ 27e:	99 1f       	adc	r25, r25
+ 280:	5a 95       	dec	r21
+ 282:	a9 f7       	brne	.-22     	; 0x26e <__udivmodhi4_loop>
+ 284:	80 95       	com	r24
+ 286:	90 95       	com	r25
+ 288:	bc 01       	movw	r22, r24
+ 28a:	cd 01       	movw	r24, r26
+ 28c:	08 95       	ret
+
+0000028e <itoa>:
+ 28e:	fb 01       	movw	r30, r22
+ 290:	9f 01       	movw	r18, r30
+ 292:	e8 94       	clt
+ 294:	42 30       	cpi	r20, 0x02	; 2
+ 296:	c4 f0       	brlt	.+48     	; 0x2c8 <itoa+0x3a>
+ 298:	45 32       	cpi	r20, 0x25	; 37
+ 29a:	b4 f4       	brge	.+44     	; 0x2c8 <itoa+0x3a>
+ 29c:	4a 30       	cpi	r20, 0x0A	; 10
+ 29e:	29 f4       	brne	.+10     	; 0x2aa <itoa+0x1c>
+ 2a0:	97 fb       	bst	r25, 7
+ 2a2:	1e f4       	brtc	.+6      	; 0x2aa <itoa+0x1c>
+ 2a4:	90 95       	com	r25
+ 2a6:	81 95       	neg	r24
+ 2a8:	9f 4f       	sbci	r25, 0xFF	; 255
+ 2aa:	64 2f       	mov	r22, r20
+ 2ac:	77 27       	eor	r23, r23
+ 2ae:	0e 94 33 01 	call	0x266	; 0x266 <__udivmodhi4>
+ 2b2:	80 5d       	subi	r24, 0xD0	; 208
+ 2b4:	8a 33       	cpi	r24, 0x3A	; 58
+ 2b6:	0c f0       	brlt	.+2      	; 0x2ba <itoa+0x2c>
+ 2b8:	89 5d       	subi	r24, 0xD9	; 217
+ 2ba:	81 93       	st	Z+, r24
+ 2bc:	cb 01       	movw	r24, r22
+ 2be:	00 97       	sbiw	r24, 0x00	; 0
+ 2c0:	a1 f7       	brne	.-24     	; 0x2aa <itoa+0x1c>
+ 2c2:	16 f4       	brtc	.+4      	; 0x2c8 <itoa+0x3a>
+ 2c4:	5d e2       	ldi	r21, 0x2D	; 45
+ 2c6:	51 93       	st	Z+, r21
+ 2c8:	10 82       	st	Z, r1
+ 2ca:	c9 01       	movw	r24, r18
+ 2cc:	0c 94 68 01 	jmp	0x2d0	; 0x2d0 <strrev>
+
+000002d0 <strrev>:
+ 2d0:	dc 01       	movw	r26, r24
+ 2d2:	fc 01       	movw	r30, r24
+ 2d4:	67 2f       	mov	r22, r23
+ 2d6:	71 91       	ld	r23, Z+
+ 2d8:	77 23       	and	r23, r23
+ 2da:	e1 f7       	brne	.-8      	; 0x2d4 <strrev+0x4>
+ 2dc:	32 97       	sbiw	r30, 0x02	; 2
+ 2de:	04 c0       	rjmp	.+8      	; 0x2e8 <strrev+0x18>
+ 2e0:	7c 91       	ld	r23, X
+ 2e2:	6d 93       	st	X+, r22
+ 2e4:	70 83       	st	Z, r23
+ 2e6:	62 91       	ld	r22, -Z
+ 2e8:	ae 17       	cp	r26, r30
+ 2ea:	bf 07       	cpc	r27, r31
+ 2ec:	c8 f3       	brcs	.-14     	; 0x2e0 <strrev+0x10>
+ 2ee:	08 95       	ret
+
+000002f0 <_exit>:
+ 2f0:	f8 94       	cli
+
+000002f2 <__stop_program>:
+ 2f2:	ff cf       	rjmp	.-2      	; 0x2f2 <__stop_program>
