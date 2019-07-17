@@ -1,5 +1,8 @@
-# Ubuntu make file by Hiran H E Jayaweera based on Makefile Template written by Eric B. Weddington, Jörg Wunsch, et al.
-#
+# Use your own makefile to compile exsisting project - Lakruwan @ Noone
+
+# Author : 
+# Ubuntu make file by Dr Hiran H E Jayaweera based on Makefile Template written by Eric B. Weddington, JÃ¶rg Wunsch, et al.
+
 # On command line:
 #
 # make all = Make software.
