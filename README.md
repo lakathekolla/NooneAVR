@@ -2,7 +2,7 @@
 Codes for AVR base microcontrollers
 
 
-![alt text](http://vertassets.blob.core.windows.net/image/6427dd22/6427dd22-907e-49bf-a5e6-c82aa76b6046/atmel_logo.jpg)
+![alt text](https://rh6stzxdcl1wf9gj1fkj14uc-wpengine.netdna-ssl.com/wp-content/uploads/2013/07/AtmelLogo2012.jpg)
 
 
 ## Contents
