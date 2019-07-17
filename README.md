@@ -1,8 +1,9 @@
 # NooneAVR
 Codes for AVR base microcontrollers
 
-
-![alt text](https://rh6stzxdcl1wf9gj1fkj14uc-wpengine.netdna-ssl.com/wp-content/uploads/2013/07/AtmelLogo2012.jpg)
+<p align="center">
+  ![alt text](https://rh6stzxdcl1wf9gj1fkj14uc-wpengine.netdna-ssl.com/wp-content/uploads/2013/07/AtmelLogo2012.jpg)
+</p>
 
 
 ## Contents
